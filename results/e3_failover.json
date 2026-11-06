@@ -1,0 +1,505 @@
+{
+  "env": {
+    "dialect": "crdb",
+    "time": "2026-11-05T18:39:31+0000"
+  },
+  "node_killed": "roach2",
+  "events": [
+    [
+      "kill",
+      25.218037677999973
+    ],
+    [
+      "restart",
+      50.35431918900008
+    ]
+  ],
+  "requests": 38475,
+  "succeeded": 38470,
+  "success_rate_overall": 0.9998700454840805,
+  "success_rate_while_node_down": 0.9999313563975838,
+  "failed_requests_total": 5,
+  "error_types": {
+    "OperationalError": 1,
+    "StatementCompletionUnknown": 1,
+    "ConnectionTimeout": 2,
+    "SerializationFailure": 1
+  },
+  "recovery_time_s": 2.7819623220000267,
+  "acknowledged_writes": 38470,
+  "acknowledged_writes_missing": 0,
+  "latency_before_kill": {
+    "n": 10566,
+    "mean_ms": 31.15791785860266,
+    "p50_ms": 21.55658350000067,
+    "p95_ms": 64.46610475012449,
+    "p99_ms": 140.3238625000883,
+    "max_ms": 3712.2065850001036
+  },
+  "latency_while_down": {
+    "n": 14567,
+    "mean_ms": 18.052286869156934,
+    "p50_ms": 15.735583000150655,
+    "p95_ms": 32.78359189996536,
+    "p99_ms": 63.086688439948375,
+    "max_ms": 203.0457910000223
+  },
+  "timeline": [
+    {
+      "t": 0,
+      "ok": 501,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 1,
+      "ok": 408,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 2,
+      "ok": 360,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 3,
+      "ok": 262,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 4,
+      "ok": 172,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 5,
+      "ok": 308,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 6,
+      "ok": 562,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 7,
+      "ok": 688,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 8,
+      "ok": 554,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 9,
+      "ok": 275,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 10,
+      "ok": 412,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 11,
+      "ok": 374,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 12,
+      "ok": 465,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 13,
+      "ok": 475,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 14,
+      "ok": 464,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 15,
+      "ok": 367,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 16,
+      "ok": 443,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 17,
+      "ok": 403,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 18,
+      "ok": 689,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 19,
+      "ok": 616,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 20,
+      "ok": 492,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 21,
+      "ok": 246,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 22,
+      "ok": 472,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 23,
+      "ok": 137,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 24,
+      "ok": 391,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 25,
+      "ok": 30,
+      "fail": 4,
+      "success_rate": 0.8823529411764706
+    },
+    {
+      "t": 26,
+      "ok": 0,
+      "fail": 0,
+      "success_rate": null
+    },
+    {
+      "t": 27,
+      "ok": 85,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 28,
+      "ok": 666,
+      "fail": 1,
+      "success_rate": 0.9985007496251874
+    },
+    {
+      "t": 29,
+      "ok": 725,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 30,
+      "ok": 515,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 31,
+      "ok": 678,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 32,
+      "ok": 686,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 33,
+      "ok": 638,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 34,
+      "ok": 343,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 35,
+      "ok": 721,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 36,
+      "ok": 738,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 37,
+      "ok": 706,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 38,
+      "ok": 513,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 39,
+      "ok": 443,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 40,
+      "ok": 775,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 41,
+      "ok": 792,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 42,
+      "ok": 648,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 43,
+      "ok": 686,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 44,
+      "ok": 688,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 45,
+      "ok": 656,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 46,
+      "ok": 705,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 47,
+      "ok": 765,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 48,
+      "ok": 743,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 49,
+      "ok": 583,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 50,
+      "ok": 253,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 51,
+      "ok": 249,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 52,
+      "ok": 193,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 53,
+      "ok": 316,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 54,
+      "ok": 309,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 55,
+      "ok": 302,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 56,
+      "ok": 325,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 57,
+      "ok": 606,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 58,
+      "ok": 735,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 59,
+      "ok": 783,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 60,
+      "ok": 771,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 61,
+      "ok": 757,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 62,
+      "ok": 696,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 63,
+      "ok": 581,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 64,
+      "ok": 485,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 65,
+      "ok": 696,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 66,
+      "ok": 661,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 67,
+      "ok": 457,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 68,
+      "ok": 480,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 69,
+      "ok": 746,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 70,
+      "ok": 592,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 71,
+      "ok": 575,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 72,
+      "ok": 628,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 73,
+      "ok": 657,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 74,
+      "ok": 553,
+      "fail": 0,
+      "success_rate": 1.0
+    },
+    {
+      "t": 75,
+      "ok": 0,
+      "fail": 0,
+      "success_rate": null
+    }
+  ]
+}

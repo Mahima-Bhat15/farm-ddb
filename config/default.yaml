@@ -1,0 +1,76 @@
+# Synthetic data + workload configuration. Same config + same seed = same dataset.
+seed: 512
+
+regions:                 # share of players homed in each region
+  us-west: 0.40
+  us-east: 0.35
+  eu-west: 0.25
+
+utc_offset_hours:        # used to place each region's daily activity peak
+  us-west: -8
+  us-east: -5
+  eu-west: 1
+
+scale:                   # Milestone 2 laptop scale; multiply for scalability tests
+  players: 20000
+  catalog_items: 500     # item types (ids 1..500) plus the Golden Seed (id 0)
+  items: 100000          # individually owned items
+  shared_fields: 1000
+  harvest_history: 50000
+  presence_share: 0.10
+
+players:
+  level_geometric_p: 0.12        # many low-level players, few high-level ones
+  max_level: 50
+
+catalog:
+  rarity_shares: {common: 0.70, uncommon: 0.20, rare: 0.08, legendary: 0.02}
+  rarity_value_median: {common: 10, uncommon: 40, rare: 200, legendary: 1500}
+  value_sigma: 0.5               # lognormal spread around the median
+  n_crops: 8                     # item types 1..8 are crops
+
+crops:                           # item_type_id: [name, growth_seconds, mean_yield]
+  1: [Wheat, 60, 4]
+  2: [Corn, 90, 3]
+  3: [Carrot, 45, 5]
+  4: [Potato, 120, 4]
+  5: [Tomato, 75, 3]
+  6: [Pumpkin, 300, 1]
+  7: [Strawberry, 150, 6]
+  8: [Sunflower, 240, 2]
+
+items:
+  zipf_exponent: 1.1             # popularity of item types by rank
+
+inventory:
+  types_per_player_mean: 5       # Poisson
+  quantity_log_mean: 1.5         # lognormal
+  quantity_log_sigma: 1.0
+
+wallets:
+  coins_log_median: 500
+  coins_level_slope: 0.04        # richer at higher levels
+  coins_log_sigma: 1.0
+
+plots:
+  base: 4                        # plots = base + level // per_levels
+  per_levels: 5
+  planted_share: 0.5
+
+fields:
+  golden_seed_price: 50
+  stock_min: 1
+  stock_max: 5
+  popularity_zipf_exponent: 1.2
+
+presence:
+  ttl_minutes: 5
+
+workload:                        # Locust / experiment request mix
+  view_farm: 0.55
+  plant_or_harvest: 0.25
+  leaderboard_or_presence: 0.10
+  trade: 0.05
+  buy_from_field: 0.05
+  cross_region_trade_share: 0.20
+  think_time_mean_s: 2.0

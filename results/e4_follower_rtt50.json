@@ -1,0 +1,91 @@
+{
+  "env": {
+    "dialect": "crdb",
+    "time": "2026-11-05T18:43:53+0000"
+  },
+  "label": "rtt50",
+  "reader_region": "eu-west",
+  "seconds": 20.0,
+  "heartbeat_latency": {
+    "strong": {
+      "n": 92,
+      "mean_ms": 57.05520198914062,
+      "p50_ms": 51.9813334999526,
+      "p95_ms": 58.0177102000448,
+      "p99_ms": 101.6185405600243,
+      "max_ms": 416.5741669999079
+    },
+    "follower": {
+      "n": 92,
+      "mean_ms": 2.3377300869454936,
+      "p50_ms": 1.3562709998495848,
+      "p95_ms": 6.92405594996899,
+      "p99_ms": 12.74235927991188,
+      "max_ms": 20.079499999837935
+    }
+  },
+  "leaderboard_latency": {
+    "strong": {
+      "n": 92,
+      "mean_ms": 134.35455171739733,
+      "p50_ms": 105.30620849988281,
+      "p95_ms": 183.7476956501178,
+      "p99_ms": 504.49297136987354,
+      "max_ms": 1861.9156679999378
+    },
+    "follower": {
+      "n": 92,
+      "mean_ms": 4.121034826072367,
+      "p50_ms": 2.6734580000038477,
+      "p95_ms": 9.410822700067458,
+      "p99_ms": 20.730308780018788,
+      "max_ms": 36.06566700000258
+    }
+  },
+  "staleness_s": {
+    "strong": {
+      "mean": 0.06252677803454192,
+      "max": 0.16592097282409668,
+      "min": 0.028125762939453125
+    },
+    "follower": {
+      "mean": 5.067087468893631,
+      "max": 10.074656963348389,
+      "min": 4.201642274856567
+    }
+  },
+  "follower_read_plan": [
+    "planning time: 461\u00b5s",
+    "execution time: 779\u00b5s",
+    "distribution: local",
+    "vectorized: true",
+    "plan type: custom",
+    "rows decoded from KV: 1 (19 B, 1 gRPC calls)",
+    "cumulative time spent in KV: 578\u00b5s",
+    "maximum memory usage: 20 KiB",
+    "DistSQL network usage: 0 B (0 messages)",
+    "regions: eu-west",
+    "used follower read",
+    "sql cpu time: 12\u00b5s",
+    "isolation level: serializable",
+    "priority: normal",
+    "quality of service: regular",
+    "historical: AS OF SYSTEM TIME 2026-11-05 18:43:49.06874",
+    "",
+    "\u2022 scan",
+    "  sql nodes: n2",
+    "  kv nodes: n7",
+    "  regions: eu-west",
+    "  used follower read",
+    "  actual row count: 1",
+    "  KV time: 578\u00b5s",
+    "  KV rows decoded: 1",
+    "  KV bytes read: 19 B",
+    "  KV gRPC calls: 1",
+    "  estimated max memory allocated: 20 KiB",
+    "  sql cpu time: 12\u00b5s",
+    "  estimated row count: 1 (100% of the table; stats collected 14 minutes ago)",
+    "  table: heartbeat@heartbeat_pkey",
+    "  spans: [/1 - /1]"
+  ]
+}

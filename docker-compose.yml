@@ -1,0 +1,130 @@
+# Sunfield farm-game backend: 9-node CockroachDB cluster in 3 simulated regions.
+#   us-west : roach1-3   us-east : roach4-6   eu-west : roach7-9
+# Start:   docker compose up -d --build   (then: docker compose run --rm init)
+# Console: http://localhost:8080 (roach1), :8081 (roach4), :8082 (roach7)
+# HAProxy: 26001 us-west, 26002 us-east, 26003 eu-west, stats on :8404
+
+x-roach: &roach
+  image: cockroachdb/cockroach:${CRDB_VERSION:-latest-v25.2}
+  restart: "no"
+  # Small memory settings so 9 nodes fit on a laptop.
+  environment:
+    - COCKROACH_SKIP_ENABLING_DIAGNOSTIC_REPORTING=true
+
+services:
+  roach1:
+    <<: *roach
+    hostname: roach1
+    command: start --advertise-addr=roach1:26257 --locality=region=us-west,zone=us-west-a --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    ports: ["26257:26257", "8080:8080"]
+    volumes: ["roach1:/cockroach/cockroach-data"]
+  roach2:
+    <<: *roach
+    hostname: roach2
+    command: start --advertise-addr=roach2:26257 --locality=region=us-west,zone=us-west-b --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    volumes: ["roach2:/cockroach/cockroach-data"]
+  roach3:
+    <<: *roach
+    hostname: roach3
+    command: start --advertise-addr=roach3:26257 --locality=region=us-west,zone=us-west-c --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    volumes: ["roach3:/cockroach/cockroach-data"]
+  roach4:
+    <<: *roach
+    hostname: roach4
+    command: start --advertise-addr=roach4:26257 --locality=region=us-east,zone=us-east-a --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    ports: ["8081:8080"]
+    volumes: ["roach4:/cockroach/cockroach-data"]
+  roach5:
+    <<: *roach
+    hostname: roach5
+    command: start --advertise-addr=roach5:26257 --locality=region=us-east,zone=us-east-b --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    volumes: ["roach5:/cockroach/cockroach-data"]
+  roach6:
+    <<: *roach
+    hostname: roach6
+    command: start --advertise-addr=roach6:26257 --locality=region=us-east,zone=us-east-c --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    volumes: ["roach6:/cockroach/cockroach-data"]
+  roach7:
+    <<: *roach
+    hostname: roach7
+    command: start --advertise-addr=roach7:26257 --locality=region=eu-west,zone=eu-west-a --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    ports: ["8082:8080"]
+    volumes: ["roach7:/cockroach/cockroach-data"]
+  roach8:
+    <<: *roach
+    hostname: roach8
+    command: start --advertise-addr=roach8:26257 --locality=region=eu-west,zone=eu-west-b --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    volumes: ["roach8:/cockroach/cockroach-data"]
+  roach9:
+    <<: *roach
+    hostname: roach9
+    command: start --advertise-addr=roach9:26257 --locality=region=eu-west,zone=eu-west-c --insecure --join=roach1:26257,roach4:26257,roach7:26257 --cache=128MiB --max-sql-memory=128MiB --listen-addr=:26257 --http-addr=:8080
+    volumes: ["roach9:/cockroach/cockroach-data"]
+
+  # One-shot: initialise the cluster once all nodes are up.
+  init:
+    image: cockroachdb/cockroach:${CRDB_VERSION:-latest-v25.2}
+    profiles: ["setup"]
+    command: init --insecure --host=roach1:26257
+    depends_on: [roach1, roach2, roach3, roach4, roach5, roach6, roach7, roach8, roach9]
+
+  # Region-aware load balancer: each region's port prefers that region's nodes,
+  # and falls back to other regions only when all local nodes are down.
+  haproxy:
+    image: haproxy:2.8
+    volumes: ["./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"]
+    ports: ["26001:26001", "26002:26002", "26003:26003", "8404:8404"]
+    depends_on: [roach1, roach4, roach7]
+
+  # Python tools: data generator, loader, experiments, audit.
+  tools:
+    build: { context: ., dockerfile: Dockerfile.tools }
+    working_dir: /app
+    command: sleep infinity
+    volumes:
+      - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock   # lets the failover test stop/start nodes
+    environment:
+      - FARM_DSN_US_WEST=postgresql://root@haproxy:26001/farm?sslmode=disable
+      - FARM_DSN_US_EAST=postgresql://root@haproxy:26002/farm?sslmode=disable
+      - FARM_DSN_EU_WEST=postgresql://root@haproxy:26003/farm?sslmode=disable
+      - FARM_DSN_ADMIN=postgresql://root@roach1:26257/defaultdb?sslmode=disable
+      - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-farm-ddb}
+    depends_on: [haproxy]
+
+  # Game API, one stateless instance per region.
+  api-us-west:
+    build: { context: ., dockerfile: Dockerfile.tools }
+    working_dir: /app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+    volumes: [".:/app"]
+    environment: [REGION=us-west, "FARM_DSN=postgresql://root@haproxy:26001/farm?sslmode=disable"]
+    ports: ["8001:8000"]
+    depends_on: [haproxy]
+  api-us-east:
+    build: { context: ., dockerfile: Dockerfile.tools }
+    working_dir: /app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+    volumes: [".:/app"]
+    environment: [REGION=us-east, "FARM_DSN=postgresql://root@haproxy:26002/farm?sslmode=disable"]
+    ports: ["8002:8000"]
+    depends_on: [haproxy]
+  api-eu-west:
+    build: { context: ., dockerfile: Dockerfile.tools }
+    working_dir: /app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+    volumes: [".:/app"]
+    environment: [REGION=eu-west, "FARM_DSN=postgresql://root@haproxy:26003/farm?sslmode=disable"]
+    ports: ["8003:8000"]
+    depends_on: [haproxy]
+
+volumes:
+  roach1: {}
+  roach2: {}
+  roach3: {}
+  roach4: {}
+  roach5: {}
+  roach6: {}
+  roach7: {}
+  roach8: {}
+  roach9: {}

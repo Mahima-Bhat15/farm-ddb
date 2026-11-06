@@ -1,0 +1,21 @@
+# Generated data: recreate with `python -m farmdb.generate`
+data/
+
+# Archive of results/, which is committed directly
+phase2-results.zip
+
+# Editor and manual backups
+*.bak
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local environment
+.env
+.env.*
+
+# macOS
+.DS_Store

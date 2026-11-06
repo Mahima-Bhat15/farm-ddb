@@ -1,0 +1,299 @@
+
+=== Nodes and their localities ===
+> SELECT node_id, address, locality, is_live FROM crdb_internal.gossip_nodes ORDER BY node_id
+
+node_id  address       locality                       is_live
+-------------------------------------------------------------
+1        roach1:26257  region=us-west,zone=us-west-a  True   
+2        roach9:26257  region=eu-west,zone=eu-west-c  True   
+3        roach6:26257  region=us-east,zone=us-east-c  True   
+4        roach8:26257  region=eu-west,zone=eu-west-b  True   
+5        roach4:26257  region=us-east,zone=us-east-a  True   
+6        roach2:26257  region=us-west,zone=us-west-b  True   
+7        roach7:26257  region=eu-west,zone=eu-west-a  True   
+8        roach5:26257  region=us-east,zone=us-east-b  True   
+9        roach3:26257  region=us-west,zone=us-west-c  True   
+
+=== Database regions ===
+> SHOW REGIONS FROM DATABASE farm
+
+database  region   primary  secondary  zones                                  
+------------------------------------------------------------------------------
+farm      us-west  True     False      ['us-west-a', 'us-west-b', 'us-west-c']
+farm      eu-west  False    False      ['eu-west-a', 'eu-west-b', 'eu-west-c']
+farm      us-east  False    False      ['us-east-a', 'us-east-b', 'us-east-c']
+
+=== Survival goal ===
+> SHOW SURVIVAL GOAL FROM DATABASE farm
+
+database  survival_goal
+-----------------------
+farm      zone         
+
+=== Table localities ===
+> SELECT name AS table_name, locality FROM crdb_internal.tables WHERE database_name = 'farm' AND drop_time IS NULL ORDER BY 1
+
+table_name        locality                           
+-----------------------------------------------------
+audit_baseline    REGIONAL BY TABLE IN PRIMARY REGION
+durability_probe  REGIONAL BY ROW AS region          
+farm_plots        REGIONAL BY ROW AS region          
+field_purchases   REGIONAL BY ROW AS region          
+harvest_log       REGIONAL BY ROW AS region          
+heartbeat         REGIONAL BY TABLE IN PRIMARY REGION
+inventory         REGIONAL BY ROW AS region          
+item_catalog      GLOBAL                             
+items             REGIONAL BY ROW AS region          
+leaderboard       REGIONAL BY TABLE IN PRIMARY REGION
+players           REGIONAL BY ROW AS home_region     
+presence          REGIONAL BY ROW AS region          
+requests          REGIONAL BY ROW AS region          
+shared_fields     REGIONAL BY ROW AS region          
+trades            REGIONAL BY ROW AS region          
+wallets           REGIONAL BY ROW AS region          
+
+=== Partitions of players (one per region) ===
+> SHOW PARTITIONS FROM TABLE players
+
+database_name  table_name  partition_name  parent_partition  column_names  index_name            partition_value  zone_config                                                   full_zone_config                                            
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+farm           players     eu-west         None              home_region   players@players_pkey  ('eu-west')      num_voters = 3,
+voter_constraints = '[+region=eu-west]',
+lea  range_min_bytes = 134217728,
+range_max_bytes = 536870912,
+gc
+farm           players     us-east         None              home_region   players@players_pkey  ('us-east')      num_voters = 3,
+voter_constraints = '[+region=us-east]',
+lea  range_min_bytes = 134217728,
+range_max_bytes = 536870912,
+gc
+farm           players     us-west         None              home_region   players@players_pkey  ('us-west')      num_voters = 3,
+voter_constraints = '[+region=us-west]',
+lea  range_min_bytes = 134217728,
+range_max_bytes = 536870912,
+gc
+
+=== Zone configuration of players ===
+> SHOW ZONE CONFIGURATION FROM TABLE players
+
+target         raw_config_sql                                              
+---------------------------------------------------------------------------
+DATABASE farm  ALTER DATABASE farm CONFIGURE ZONE USING
+	range_min_bytes = 
+
+=== Ranges of players with leaseholder and replicas ===
+> SELECT range_id, start_key, end_key, lease_holder, lease_holder_locality, replicas, voting_replicas, non_voting_replicas FROM [SHOW RANGES FROM TABLE players WITH DETAILS] ORDER BY start_key
+
+range_id  start_key                                                     end_key                                                       lease_holder  lease_holder_locality          replicas         voting_replicas  non_voting_replicas
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+155       …/1/"@"                                                       …/1/"@"/"@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x  4             region=eu-west,zone=eu-west-b  [2, 4, 5, 7, 9]  [4, 7, 2]        [9, 5]             
+227       …/1/"@"/"@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x  …/1/"@"/"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  7             region=eu-west,zone=eu-west-a  [1, 2, 4, 7, 8]  [4, 7, 2]        [1, 8]             
+255       …/1/"@"/"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  …/1/"@"/"\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  7             region=eu-west,zone=eu-west-a  [1, 2, 4, 7, 8]  [4, 7, 2]        [1, 8]             
+257       …/1/"@"/"\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  …/1/"@"/PrefixEnd                                             2             region=eu-west,zone=eu-west-c  [1, 2, 4, 5, 7]  [4, 7, 2]        [1, 5]             
+156       …/1/"@"/PrefixEnd                                             …/1/"\x80"                                                    6             region=us-west,zone=us-west-b  [1, 4, 5, 6, 9]  [9, 1, 6]        [4, 5]             
+157       …/1/"\x80"                                                    …/1/"\x80"/"@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  5             region=us-east,zone=us-east-a  [3, 4, 5, 6, 8]  [5, 3, 8]        [4, 6]             
+226       …/1/"\x80"/"@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  …/1/"\x80"/"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  8             region=us-east,zone=us-east-b  [1, 2, 3, 5, 8]  [3, 5, 8]        [2, 1]             
+237       …/1/"\x80"/"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  …/1/"\x80"/"\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  8             region=us-east,zone=us-east-b  [1, 3, 5, 7, 8]  [3, 5, 8]        [7, 1]             
+238       …/1/"\x80"/"\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  …/1/"\x80"/PrefixEnd                                          8             region=us-east,zone=us-east-b  [2, 3, 5, 6, 8]  [3, 5, 8]        [2, 6]             
+158       …/1/"\x80"/PrefixEnd                                          …/1/"\xc0"/"@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  1             region=us-west,zone=us-west-a  [1, 2, 6, 8, 9]  [9, 1, 6]        [2, 8]             
+223       …/1/"\xc0"/"@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0  …/1/"\xc0"/"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  1             region=us-west,zone=us-west-a  [1, 2, 3, 6, 9]  [9, 1, 6]        [2, 3]             
+224       …/1/"\xc0"/"\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  …/1/"\xc0"/"\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  9             region=us-west,zone=us-west-c  [1, 2, 6, 8, 9]  [9, 1, 6]        [2, 8]             
+225       …/1/"\xc0"/"\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00  <after:/Table/126/1/"@">                                      9             region=us-west,zone=us-west-c  [1, 5, 6, 7, 9]  [9, 1, 6]        [7, 5]             
+154       …/<TableMin>                                                  …/1/"@"                                                       9             region=us-west,zone=us-west-c  [1, 2, 5, 6, 9]  [9, 1, 6]        [2, 5]             
+
+=== Leaseholders per node, whole farm database ===
+> SELECT lease_holder, count(*) AS ranges FROM [SHOW RANGES FROM DATABASE farm WITH DETAILS] GROUP BY 1 ORDER BY 1
+
+lease_holder  ranges
+--------------------
+1             16    
+2             9     
+3             9     
+4             9     
+5             6     
+6             9     
+7             5     
+8             8     
+9             17    
+
+=== Rows per region (players) ===
+> SELECT home_region, count(*) FROM players GROUP BY 1 ORDER BY 1
+
+home_region  count
+------------------
+eu-west      5051 
+us-east      6911 
+us-west      8038 
+
+=== Local query: one player's farm (EXPLAIN ANALYZE) ===
+> EXPLAIN ANALYZE SELECT * FROM farm_plots WHERE owner_id = (SELECT player_id FROM players WHERE home_region = 'us-west' LIMIT 1)
+
+planning time: 493µs
+execution time: 11ms
+distribution: local
+vectorized: true
+plan type: generic, reused
+rows decoded from KV: 11 (769 B, 7 gRPC calls)
+cumulative time spent in KV: 10ms
+maximum memory usage: 100 KiB
+DistSQL network usage: 0 B (0 messages)
+regions: eu-west, us-east, us-west
+sql cpu time: 523µs
+isolation level: serializable
+priority: normal
+quality of service: regular
+
+• lookup join (streamer)
+│ sql nodes: n1
+│ kv nodes: n1, n6, n9
+│ regions: us-west
+│ actual row count: 5
+│ KV time: 7ms
+│ KV rows decoded: 5
+│ KV bytes read: 328 B
+│ KV gRPC calls: 3
+│ execution time: 7ms
+│ estimated max memory allocated: 40 KiB
+│ sql cpu time: 322µs
+│ estimated row count: 5
+│ table: farm_plots@farm_plots_pkey
+│ equality: (region, plot_id) = (region, plot_id)
+│ equality cols are key
+│
+└── • lookup join (streamer)
+    │ sql nodes: n1
+    │ kv nodes: n2, n8, n9
+    │ regions: eu-west, us-east, us-west
+    │ actual row count: 5
+    │ KV time: 2ms
+    │ KV rows decoded: 5
+    │ KV bytes read: 351 B
+    │ KV gRPC calls: 3
+    │ execution time: 2ms
+    │ estimated max memory allocated: 40 KiB
+    │ sql cpu time: 179µs
+    │ estimated row count: 5
+    │ table: farm_plots@plots_by_owner
+    │ lookup condition: (region IN ('eu-west', 'us-east', 'us-west')) AND (player_id = owner_id)
+    │
+    └── • scan
+          sql nodes: n1
+          kv nodes: n1
+          regions: us-west
+          actual row count: 1
+          KV time: 775µs
+          KV rows decoded: 1
+          KV bytes read: 90 B
+          KV gRPC calls: 1
+          estimated max memory allocated: 20 KiB
+          sql cpu time: 22µs
+          estimated row count: 1 (<0.01% of the table; stats collected 16 minutes ago)
+          table: players@players_pkey
+          spans: [/'us-west' - /'us-west']
+          limit: 1
+
+=== Cross-region query: richest players in every region (EXPLAIN ANALYZE) ===
+> EXPLAIN ANALYZE SELECT p.home_region, max(w.coins) FROM players p JOIN wallets w ON w.player_id = p.player_id GROUP BY 1
+
+planning time: 404µs
+execution time: 87ms
+distribution: full
+vectorized: true
+plan type: generic, reused
+rows decoded from KV: 40,000 (3.0 MiB, 13 gRPC calls)
+cumulative time spent in KV: 96ms
+maximum memory usage: 2.5 MiB
+DistSQL network usage: 2.0 MiB (551 messages)
+regions: eu-west, us-east, us-west
+sql cpu time: 56ms
+isolation level: serializable
+priority: normal
+quality of service: regular
+
+• group (hash)
+│ sql nodes: n1, n2, n4, n5, n6, n7, n8, n9
+│ regions: eu-west, us-east, us-west
+│ actual row count: 3
+│ execution time: 34ms
+│ estimated max memory allocated: 2.7 MiB
+│ estimated max sql temp disk usage: 0 B
+│ sql cpu time: 15ms
+│ estimated row count: 3
+│ group by: home_region
+│
+└── • hash join
+    │ sql nodes: n1, n2, n4, n5, n6, n7, n8, n9
+    │ regions: eu-west, us-east, us-west
+    │ actual row count: 20,000
+    │ execution time: 24ms
+    │ estimated max memory allocated: 2.0 MiB
+    │ sql cpu time: 15ms
+    │ estimated row count: 20,200
+    │ equality: (player_id) = (player_id)
+    │ left cols are key
+    │ right cols are key
+    │
+    ├── • scan
+    │     sql nodes: n1, n2, n4, n5, n6, n7, n8, n9
+    │     kv nodes: n1, n2, n4, n5, n6, n7, n8, n9
+    │     regions: eu-west, us-east, us-west
+    │     actual row count: 20,000
+    │     KV time: 58ms
+    │     KV rows decoded: 20,000
+    │     KV bytes read: 1.7 MiB
+    │     KV gRPC calls: 8
+    │     estimated max memory allocated: 2.4 MiB
+    │     sql cpu time: 19ms
+    │     estimated row count: 20,000 (100% of the table; stats collected 16 minutes ago)
+    │     table: players@players_pkey
+    │     spans: FULL SCAN
+    │
+    └── • scan
+          sql nodes: n1, n2, n6, n8, n9
+          kv nodes: n1, n2, n6, n8, n9
+          regions: eu-west, us-east, us-west
+          actual row count: 20,000
+          KV time: 38ms
+          KV rows decoded: 20,000
+          KV bytes read: 1.2 MiB
+          KV gRPC calls: 5
+          estimated max memory allocated: 1.5 MiB
+          sql cpu time: 6ms
+          estimated row count: 20,000 (100% of the table; stats collected 5 minutes ago; using stats forecast for 4 minutes ago)
+          table: wallets@wallets_pkey
+          spans: FULL SCAN
+
+=== Follower read of the leaderboard (EXPLAIN ANALYZE) ===
+> EXPLAIN ANALYZE SELECT player_id, score FROM leaderboard AS OF SYSTEM TIME follower_read_timestamp() ORDER BY score DESC LIMIT 10
+
+planning time: 8ms
+execution time: 1ms
+distribution: local
+vectorized: true
+plan type: generic, re-optimized
+rows decoded from KV: 10 (482 B, 1 gRPC calls)
+cumulative time spent in KV: 801µs
+maximum memory usage: 20 KiB
+DistSQL network usage: 0 B (0 messages)
+regions: us-west
+sql cpu time: 42µs
+isolation level: serializable
+priority: normal
+quality of service: regular
+historical: AS OF SYSTEM TIME 2026-11-05 18:46:18.806944
+
+• scan
+  sql nodes: n1
+  kv nodes: n1
+  regions: us-west
+  actual row count: 10
+  KV time: 801µs
+  KV rows decoded: 10
+  KV bytes read: 482 B
+  KV gRPC calls: 1
+  estimated max memory allocated: 20 KiB
+  sql cpu time: 42µs
+  estimated row count: 10 (0.07% of the table; stats collected 9 seconds ago; using stats forecast for 32 seconds in the future)
+  table: leaderboard@leaderboard_by_score
+  spans: LIMITED SCAN
+  limit: 10

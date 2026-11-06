@@ -1,0 +1,85 @@
+{
+  "env": {
+    "dialect": "crdb",
+    "time": "2026-11-05T18:32:54+0000"
+  },
+  "field_region": "us-west",
+  "stock": 20,
+  "rows": [
+    {
+      "mode": "serializable",
+      "workers": 4,
+      "stock": 20,
+      "successful_buys": 20,
+      "seeds_sold_in_db": 20,
+      "remaining": 0,
+      "oversold": 0,
+      "gave_up": 0,
+      "errors": [],
+      "retries_total": 17,
+      "retries_per_buy": 0.85,
+      "latency": {
+        "n": 20,
+        "mean_ms": 52.58340410000528,
+        "p50_ms": 34.51402049995522,
+        "p95_ms": 149.1235062500778,
+        "p99_ms": 223.35280125001862,
+        "max_ms": 241.91012500000397
+      },
+      "wall_s": 0.5001917919998959,
+      "throughput_buys_per_s": 39.984662523219015,
+      "audit_passed": true,
+      "run": 1
+    },
+    {
+      "mode": "pessimistic",
+      "workers": 4,
+      "stock": 20,
+      "successful_buys": 20,
+      "seeds_sold_in_db": 20,
+      "remaining": 0,
+      "oversold": 0,
+      "gave_up": 0,
+      "errors": [],
+      "retries_total": 0,
+      "retries_per_buy": 0.0,
+      "latency": {
+        "n": 20,
+        "mean_ms": 27.95675404997837,
+        "p50_ms": 24.096874999941065,
+        "p95_ms": 50.59865894990028,
+        "p99_ms": 77.4543981901456,
+        "max_ms": 84.16833300020699
+      },
+      "wall_s": 0.2993685420001384,
+      "throughput_buys_per_s": 66.8072866520182,
+      "audit_passed": true,
+      "run": 1
+    },
+    {
+      "mode": "optimistic",
+      "workers": 4,
+      "stock": 20,
+      "successful_buys": 20,
+      "seeds_sold_in_db": 20,
+      "remaining": 0,
+      "oversold": 0,
+      "gave_up": 0,
+      "errors": [],
+      "retries_total": 3,
+      "retries_per_buy": 0.15,
+      "latency": {
+        "n": 20,
+        "mean_ms": 28.35216460000538,
+        "p50_ms": 21.942521000028137,
+        "p95_ms": 75.4051183998513,
+        "p99_ms": 91.13765647988882,
+        "max_ms": 95.07079099989824
+      },
+      "wall_s": 0.5983254170000691,
+      "throughput_buys_per_s": 33.42662609968597,
+      "audit_passed": true,
+      "run": 1
+    }
+  ]
+}

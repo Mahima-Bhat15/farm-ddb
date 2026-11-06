@@ -1,0 +1,52 @@
+{
+  "counts": {
+    "item_catalog": 501,
+    "players": 20000,
+    "wallets": 20000,
+    "inventory": 99966,
+    "items": 100000,
+    "farm_plots": 105253,
+    "shared_fields": 1000,
+    "harvest_log": 50000,
+    "presence": 2000
+  },
+  "checks": {
+    "inventory_fk_players": true,
+    "inventory_fk_catalog": true,
+    "items_fk_players": true,
+    "plots_fk_players": true,
+    "no_negative_quantities": true,
+    "no_negative_coins": true,
+    "unique_player_ids": true,
+    "unique_inventory_keys": true,
+    "region_split_matches_target": true,
+    "zipf_exponent_within_0.15": true,
+    "level_ks_below_0.02": true
+  },
+  "region_split": {
+    "us-west": 0.4019,
+    "us-east": 0.3456,
+    "eu-west": 0.2526
+  },
+  "region_split_chi2_p": 0.4000620118417153,
+  "item_zipf_exponent_fitted": 1.093,
+  "item_zipf_exponent_target": 1.1,
+  "top10_item_types_share_of_items": 0.5133,
+  "level_mean": 8.285,
+  "level_mean_target": 8.333,
+  "level_ks_distance": 0.0053,
+  "coins_median": 695,
+  "coins_p99": 8666,
+  "coins_top1pct_share": 0.1073,
+  "harvest_peak_local_hour": {
+    "us-west": 20,
+    "us-east": 20,
+    "eu-west": 21
+  },
+  "golden_seeds_total": 2945,
+  "top10_fields_share_of_traffic": 0.5692,
+  "all_checks_passed": true,
+  "seed": 512,
+  "scale_factor": 1.0,
+  "anchor": "2026-11-05T18:20:45+00:00"
+}

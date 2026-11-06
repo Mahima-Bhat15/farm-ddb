@@ -1,0 +1,13 @@
+{
+  "coins_conserved": true,
+  "coins_difference": 0,
+  "items_conserved": true,
+  "item_differences": {},
+  "negative_inventory_rows": 0,
+  "negative_wallets": 0,
+  "negative_field_stock": 0,
+  "fields_with_sales_mismatch": 0,
+  "duplicate_trades_per_request": 0,
+  "wallets_without_player": 0,
+  "passed": true
+}

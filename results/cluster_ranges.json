@@ -1,0 +1,1776 @@
+{
+ "nodes": [
+  {
+   "node_id": 1,
+   "locality": "region=us-west,zone=us-west-a"
+  },
+  {
+   "node_id": 2,
+   "locality": "region=eu-west,zone=eu-west-c"
+  },
+  {
+   "node_id": 3,
+   "locality": "region=us-east,zone=us-east-c"
+  },
+  {
+   "node_id": 4,
+   "locality": "region=eu-west,zone=eu-west-b"
+  },
+  {
+   "node_id": 5,
+   "locality": "region=us-east,zone=us-east-a"
+  },
+  {
+   "node_id": 6,
+   "locality": "region=us-west,zone=us-west-b"
+  },
+  {
+   "node_id": 7,
+   "locality": "region=eu-west,zone=eu-west-a"
+  },
+  {
+   "node_id": 8,
+   "locality": "region=us-east,zone=us-east-b"
+  },
+  {
+   "node_id": 9,
+   "locality": "region=us-west,zone=us-west-c"
+  }
+ ],
+ "ranges": [
+  {
+   "table": "item_catalog",
+   "range_id": 153,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    4,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 154,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 155,
+   "lease_holder": 4,
+   "replicas": [
+    2,
+    4,
+    5,
+    7,
+    9
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 227,
+   "lease_holder": 7,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 255,
+   "lease_holder": 7,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 257,
+   "lease_holder": 2,
+   "replicas": [
+    1,
+    2,
+    4,
+    5,
+    7
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 156,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 157,
+   "lease_holder": 5,
+   "replicas": [
+    3,
+    4,
+    5,
+    6,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 226,
+   "lease_holder": 8,
+   "replicas": [
+    1,
+    2,
+    3,
+    5,
+    8
+   ],
+   "voting": [
+    3,
+    5,
+    8
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 237,
+   "lease_holder": 8,
+   "replicas": [
+    1,
+    3,
+    5,
+    7,
+    8
+   ],
+   "voting": [
+    3,
+    5,
+    8
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 238,
+   "lease_holder": 8,
+   "replicas": [
+    2,
+    3,
+    5,
+    6,
+    8
+   ],
+   "voting": [
+    3,
+    5,
+    8
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 158,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 223,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    2,
+    3,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 224,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "players",
+   "range_id": 225,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 225,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 159,
+   "lease_holder": 4,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 234,
+   "lease_holder": 4,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 259,
+   "lease_holder": 2,
+   "replicas": [
+    1,
+    2,
+    4,
+    5,
+    7
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 262,
+   "lease_holder": 4,
+   "replicas": [
+    1,
+    2,
+    3,
+    4,
+    7
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 160,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 161,
+   "lease_holder": 5,
+   "replicas": [
+    2,
+    3,
+    5,
+    6,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 231,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    2,
+    3,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 233,
+   "lease_holder": 5,
+   "replicas": [
+    3,
+    5,
+    6,
+    7,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 239,
+   "lease_holder": 8,
+   "replicas": [
+    1,
+    3,
+    5,
+    7,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 162,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 228,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    2,
+    3,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 229,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 230,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 163,
+   "lease_holder": 2,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 164,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    4,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 165,
+   "lease_holder": 8,
+   "replicas": [
+    3,
+    4,
+    5,
+    6,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "farm_plots",
+   "range_id": 166,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "wallets",
+   "range_id": 166,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "wallets",
+   "range_id": 167,
+   "lease_holder": 2,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "wallets",
+   "range_id": 168,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    2,
+    3,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "wallets",
+   "range_id": 169,
+   "lease_holder": 8,
+   "replicas": [
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "voting": [
+    3,
+    5,
+    8
+   ]
+  },
+  {
+   "table": "wallets",
+   "range_id": 170,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "inventory",
+   "range_id": 170,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "inventory",
+   "range_id": 171,
+   "lease_holder": 2,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "inventory",
+   "range_id": 172,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "inventory",
+   "range_id": 173,
+   "lease_holder": 8,
+   "replicas": [
+    3,
+    4,
+    5,
+    6,
+    8
+   ],
+   "voting": [
+    5,
+    3,
+    8
+   ]
+  },
+  {
+   "table": "inventory",
+   "range_id": 174,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 174,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 175,
+   "lease_holder": 2,
+   "replicas": [
+    1,
+    2,
+    3,
+    4,
+    7
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 176,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    2,
+    3,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 177,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 178,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 179,
+   "lease_holder": 4,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    2,
+    7
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 180,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 181,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "items",
+   "range_id": 182,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "shared_fields",
+   "range_id": 182,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "shared_fields",
+   "range_id": 183,
+   "lease_holder": 7,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    2,
+    7
+   ]
+  },
+  {
+   "table": "shared_fields",
+   "range_id": 184,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    3,
+    4,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "shared_fields",
+   "range_id": 185,
+   "lease_holder": 5,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    3,
+    8,
+    5
+   ]
+  },
+  {
+   "table": "shared_fields",
+   "range_id": 186,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 186,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 187,
+   "lease_holder": 2,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 188,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 189,
+   "lease_holder": 3,
+   "replicas": [
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 190,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 191,
+   "lease_holder": 4,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 192,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 193,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "field_purchases",
+   "range_id": 194,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 194,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 195,
+   "lease_holder": 2,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    2,
+    7
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 196,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 197,
+   "lease_holder": 5,
+   "replicas": [
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "voting": [
+    3,
+    8,
+    5
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 198,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 199,
+   "lease_holder": 7,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    2,
+    7
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 200,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 201,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "trades",
+   "range_id": 202,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "requests",
+   "range_id": 202,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "requests",
+   "range_id": 203,
+   "lease_holder": 4,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "requests",
+   "range_id": 204,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "requests",
+   "range_id": 205,
+   "lease_holder": 8,
+   "replicas": [
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "requests",
+   "range_id": 206,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 206,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    5,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 207,
+   "lease_holder": 2,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 208,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 209,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 210,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    2,
+    6,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 211,
+   "lease_holder": 7,
+   "replicas": [
+    2,
+    4,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    4,
+    2,
+    7
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 212,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    4,
+    5,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 213,
+   "lease_holder": 3,
+   "replicas": [
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "harvest_log",
+   "range_id": 214,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    3,
+    4,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "leaderboard",
+   "range_id": 214,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    3,
+    4,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "presence",
+   "range_id": 214,
+   "lease_holder": 1,
+   "replicas": [
+    1,
+    3,
+    4,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "presence",
+   "range_id": 215,
+   "lease_holder": 4,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "presence",
+   "range_id": 216,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    3,
+    4,
+    6,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "presence",
+   "range_id": 217,
+   "lease_holder": 3,
+   "replicas": [
+    1,
+    3,
+    4,
+    5,
+    8
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "presence",
+   "range_id": 218,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "heartbeat",
+   "range_id": 218,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "durability_probe",
+   "range_id": 218,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    3,
+    6,
+    7,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "durability_probe",
+   "range_id": 219,
+   "lease_holder": 4,
+   "replicas": [
+    1,
+    2,
+    4,
+    7,
+    8
+   ],
+   "voting": [
+    4,
+    7,
+    2
+   ]
+  },
+  {
+   "table": "durability_probe",
+   "range_id": 220,
+   "lease_holder": 9,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "durability_probe",
+   "range_id": 221,
+   "lease_holder": 5,
+   "replicas": [
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "voting": [
+    5,
+    8,
+    3
+   ]
+  },
+  {
+   "table": "durability_probe",
+   "range_id": 222,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  },
+  {
+   "table": "audit_baseline",
+   "range_id": 222,
+   "lease_holder": 6,
+   "replicas": [
+    1,
+    6,
+    7,
+    8,
+    9
+   ],
+   "voting": [
+    9,
+    1,
+    6
+   ]
+  }
+ ]
+}

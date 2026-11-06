@@ -1,0 +1,50 @@
+{
+  "env": {
+    "dialect": "crdb",
+    "time": "2026-11-05T18:37:42+0000"
+  },
+  "workers": 12,
+  "seconds": 30.0,
+  "cross_share": 0.2,
+  "attempted": 3175,
+  "committed": 3132,
+  "rejected": {
+    "insufficient_items": 43
+  },
+  "throughput_trades_per_s": 103.83834799114742,
+  "retries_per_trade": 0.006066411238825032,
+  "latency_same_region": {
+    "n": 2517,
+    "mean_ms": 111.08803029360357,
+    "p50_ms": 94.46220899985747,
+    "p95_ms": 216.5318078000837,
+    "p99_ms": 375.81056316003054,
+    "max_ms": 565.8700420001423
+  },
+  "latency_cross_region": {
+    "n": 615,
+    "mean_ms": 127.73141572520699,
+    "p50_ms": 113.59466599992629,
+    "p95_ms": 238.83610470002154,
+    "p99_ms": 371.3297922600534,
+    "max_ms": 559.6633340001063
+  },
+  "idempotency": {
+    "requests_committed_then_resent": 50,
+    "resends_returned_stored_result": 50,
+    "new_trade_rows": 50
+  },
+  "audit": {
+    "coins_conserved": true,
+    "coins_difference": 0,
+    "items_conserved": true,
+    "item_differences": {},
+    "negative_inventory_rows": 0,
+    "negative_wallets": 0,
+    "negative_field_stock": 0,
+    "fields_with_sales_mismatch": 0,
+    "duplicate_trades_per_request": 0,
+    "wallets_without_player": 0,
+    "passed": true
+  }
+}
