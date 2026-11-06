@@ -19,8 +19,8 @@ import uuid
 import time
 
 from experiments.common import env_info, farm_admin, players_by_region, region_conn, save, summarize_ms
-from farmdb import audit, ops
-from farmdb.db import RetryLimit, run_txn
+from farmgrid import audit, ops
+from farmgrid.db import RetryLimit, run_txn
 
 ISOLATION = {"serializable": "SERIALIZABLE", "pessimistic": "SERIALIZABLE", "optimistic": "READ COMMITTED"}
 

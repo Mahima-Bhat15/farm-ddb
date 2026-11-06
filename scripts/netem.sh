@@ -6,7 +6,7 @@
 # Uses a throwaway netshoot container that shares each node's network namespace.
 set -euo pipefail
 DELAY_MS="${1:-0}"
-PROJECT="${COMPOSE_PROJECT_NAME:-farm-ddb}"
+PROJECT="${COMPOSE_PROJECT_NAME:-farmgrid}"
 IMG="nicolaka/netshoot:v0.13"
 
 region_of() { case "$1" in roach1|roach2|roach3) echo us-west;; roach4|roach5|roach6) echo us-east;; *) echo eu-west;; esac; }

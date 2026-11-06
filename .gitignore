@@ -1,4 +1,4 @@
-# Generated data: recreate with `python -m farmdb.generate`
+# Generated data: recreate with `python -m farmgrid.generate`
 data/
 
 # Archive of results/, which is committed directly

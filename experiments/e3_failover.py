@@ -16,7 +16,7 @@ import time
 import uuid
 
 from experiments.common import env_info, farm_admin, players_by_region, region_conn, save, summarize_ms
-from farmdb.config import REGIONS
+from farmgrid.config import REGIONS
 
 
 def find_container(service):

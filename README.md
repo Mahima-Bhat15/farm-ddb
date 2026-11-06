@@ -1,4 +1,4 @@
-# Sunfield: a tiered-consistency distributed database backend for a multiplayer farming game
+# FarmGrid: a tiered-consistency distributed database backend for a multiplayer farming game
 
 CSE 512 Group 11 prototype. A 9-node CockroachDB cluster in three simulated
 regions (us-west, us-east, eu-west) stores a synthetic farming-game world. A
@@ -24,9 +24,9 @@ or step by step:
 ```bash
 docker compose up -d --build
 docker compose --profile setup run --rm init
-docker compose exec tools python -m farmdb.generate
-docker compose exec tools python -m farmdb.load --reset --presplit 4
-docker compose exec tools python -m farmdb.audit
+docker compose exec tools python -m farmgrid.generate
+docker compose exec tools python -m farmgrid.load --reset --presplit 4
+docker compose exec tools python -m farmgrid.audit
 ```
 
 - DB Console: http://localhost:8080 (also :8081, :8082)
@@ -42,11 +42,11 @@ docker compose exec tools python -m farmdb.audit
 | `haproxy/haproxy.cfg` | per-region ports; local nodes first, other regions as backup; health checks on `/health?ready=1` |
 | `sql/01_schema.sql` | multi-region database; REGIONAL BY ROW / GLOBAL / REGIONAL BY TABLE localities; CHECK constraints; TTL |
 | `config/default.yaml` | every data-generation and workload parameter, plus the random seed |
-| `farmdb/generate.py` | synthetic data pipeline: generate, validate, write CSVs, report, profile figure |
-| `farmdb/load.py` | schema creation, batched load, optional pre-splitting into more ranges |
-| `farmdb/ops.py` | game operations and their consistency tier |
-| `farmdb/db.py` | connections and the 40001 retry loop |
-| `farmdb/audit.py` | invariant audit: coins and items conserved, no negatives, no oversold field, no duplicate trades |
+| `farmgrid/generate.py` | synthetic data pipeline: generate, validate, write CSVs, report, profile figure |
+| `farmgrid/load.py` | schema creation, batched load, optional pre-splitting into more ranges |
+| `farmgrid/ops.py` | game operations and their consistency tier |
+| `farmgrid/db.py` | connections and the 40001 retry loop |
+| `farmgrid/audit.py` | invariant audit: coins and items conserved, no negatives, no oversold field, no duplicate trades |
 | `api/main.py` | FastAPI endpoints |
 | `experiments/e1_contention.py` | Golden Seed Drop: serializable vs pessimistic vs optimistic |
 | `experiments/e2_trades.py` | atomic same-/cross-region trades and idempotent retries |

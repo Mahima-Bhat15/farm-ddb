@@ -16,7 +16,7 @@ import threading
 import time
 
 from experiments.common import env_info, region_conn, save, summarize_ms
-from farmdb import ops
+from farmgrid import ops
 
 
 def main():

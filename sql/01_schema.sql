@@ -1,4 +1,4 @@
--- Sunfield farm-game schema for CockroachDB (multi-region).
+-- FarmGrid farm-game schema for CockroachDB (multi-region).
 -- Regions come from each node's --locality flag; the database is homed in
 -- us-west and also placed in us-east and eu-west.
 --

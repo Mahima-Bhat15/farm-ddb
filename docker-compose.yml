@@ -1,8 +1,10 @@
-# Sunfield farm-game backend: 9-node CockroachDB cluster in 3 simulated regions.
+# FarmGrid farm-game backend: 9-node CockroachDB cluster in 3 simulated regions.
 #   us-west : roach1-3   us-east : roach4-6   eu-west : roach7-9
 # Start:   docker compose up -d --build   (then: docker compose run --rm init)
 # Console: http://localhost:8080 (roach1), :8081 (roach4), :8082 (roach7)
 # HAProxy: 26001 us-west, 26002 us-east, 26003 eu-west, stats on :8404
+
+name: farmgrid
 
 x-roach: &roach
   image: cockroachdb/cockroach:${CRDB_VERSION:-latest-v25.2}
@@ -89,7 +91,7 @@ services:
       - FARM_DSN_US_EAST=postgresql://root@haproxy:26002/farm?sslmode=disable
       - FARM_DSN_EU_WEST=postgresql://root@haproxy:26003/farm?sslmode=disable
       - FARM_DSN_ADMIN=postgresql://root@roach1:26257/defaultdb?sslmode=disable
-      - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-farm-ddb}
+      - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-farmgrid}
     depends_on: [haproxy]
 
   # Game API, one stateless instance per region.

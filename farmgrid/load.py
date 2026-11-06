@@ -1,6 +1,6 @@
 """Create the schema and load the generated CSVs.
 
-    python -m farmdb.load [--reset] [--presplit 4] [--data data]
+    python -m farmgrid.load [--reset] [--presplit 4] [--data data]
 
 --reset     drop and recreate the farm database
 --presplit  split each region's partition of players/farm_plots into N ranges
@@ -15,9 +15,9 @@ import re
 import time
 from pathlib import Path
 
-from farmdb import audit, ops
-from farmdb.config import REGIONS, ROOT, admin_dsn, dialect, region_dsn
-from farmdb.db import connect, insert_rows
+from farmgrid import audit, ops
+from farmgrid.config import REGIONS, ROOT, admin_dsn, dialect, region_dsn
+from farmgrid.db import connect, insert_rows
 
 ORDER = ["item_catalog", "players", "wallets", "inventory", "items", "farm_plots",
          "shared_fields", "harvest_log", "presence"]

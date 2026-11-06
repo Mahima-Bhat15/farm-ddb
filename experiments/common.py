@@ -6,8 +6,8 @@ from pathlib import Path
 
 import numpy as np
 
-from farmdb.config import REGIONS, ROOT, admin_dsn, dialect, region_dsn
-from farmdb.db import connect
+from farmgrid.config import REGIONS, ROOT, admin_dsn, dialect, region_dsn
+from farmgrid.db import connect
 
 RESULTS = ROOT / "results"
 RESULTS.mkdir(exist_ok=True)

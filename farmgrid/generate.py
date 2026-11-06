@@ -1,6 +1,6 @@
 """Synthetic data generation pipeline.
 
-    python -m farmdb.generate [--config config/default.yaml] [--out data] [--scale 1.0]
+    python -m farmgrid.generate [--config config/default.yaml] [--out data] [--scale 1.0]
 
 Stages: (1) read config + seed, (2) generate tables in dependency order,
 (3) validate counts, keys and distributions, (4) write gzip CSVs plus a
@@ -21,7 +21,7 @@ import numpy as np
 from faker import Faker
 from scipy import stats
 
-from farmdb.config import REGIONS, ROOT, load_config
+from farmgrid.config import REGIONS, ROOT, load_config
 
 GOLDEN_SEED = 0
 

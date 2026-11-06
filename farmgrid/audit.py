@@ -1,7 +1,7 @@
 """Invariant audit: proves the game economy stayed correct after a test.
 
-    python -m farmdb.audit            # check against the stored baseline
-    python -m farmdb.audit --rebaseline
+    python -m farmgrid.audit            # check against the stored baseline
+    python -m farmgrid.audit --rebaseline
 
 Conserved quantities (no transaction may create or destroy them):
   coins:  sum(wallets.coins) + sum(field_purchases.price) == baseline
@@ -16,8 +16,8 @@ import argparse
 import json
 import sys
 
-from farmdb.config import admin_dsn, dialect
-from farmdb.db import connect
+from farmgrid.config import admin_dsn, dialect
+from farmgrid.db import connect
 
 
 def _q1(conn, sql, params=()):

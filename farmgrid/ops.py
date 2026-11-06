@@ -10,7 +10,7 @@ consistency tier an operation uses is decided here:
 import json
 import uuid
 
-from farmdb.config import dialect
+from farmgrid.config import dialect
 
 
 class GameError(Exception):
@@ -116,7 +116,7 @@ def buy_from_field(conn, player_id, region, field_id, mode="serializable"):
                             the row's version is unchanged since we read it,
                             otherwise OptimisticConflict -> retry.
     """
-    from farmdb.db import OptimisticConflict
+    from farmgrid.db import OptimisticConflict
 
     lock = " FOR UPDATE" if mode == "pessimistic" else ""
     f = conn.execute(

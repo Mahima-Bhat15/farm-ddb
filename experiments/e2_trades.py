@@ -16,9 +16,9 @@ import uuid
 import time
 
 from experiments.common import env_info, farm_admin, region_conn, save, summarize_ms
-from farmdb import audit, ops
-from farmdb.config import REGIONS
-from farmdb.db import RetryLimit, run_txn
+from farmgrid import audit, ops
+from farmgrid.config import REGIONS
+from farmgrid.db import RetryLimit, run_txn
 
 
 def pick_traders(admin, per_region):

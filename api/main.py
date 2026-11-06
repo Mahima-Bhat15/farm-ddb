@@ -1,4 +1,4 @@
-"""Sunfield game API: a stateless FastAPI service, one instance per region.
+"""FarmGrid game API: a stateless FastAPI service, one instance per region.
 
     uvicorn api.main:app --port 8000      (env: REGION, FARM_DSN)
 
@@ -17,8 +17,8 @@ from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 from pydantic import BaseModel, Field
 
-from farmdb import ops
-from farmdb.db import RetryLimit, run_txn
+from farmgrid import ops
+from farmgrid.db import RetryLimit, run_txn
 
 REGION = os.environ.get("REGION", "us-west")
 DSN = os.environ.get("FARM_DSN", "postgresql://root@localhost:26257/farm?sslmode=disable")
@@ -57,7 +57,7 @@ async def lifespan(_app):
     pool.close()
 
 
-app = FastAPI(title="Sunfield farm-game API", lifespan=lifespan)
+app = FastAPI(title="FarmGrid farm-game API", lifespan=lifespan)
 
 
 def tx(fn, isolation="SERIALIZABLE"):
